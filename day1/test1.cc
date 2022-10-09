@@ -8,6 +8,7 @@ int main()
 {
     vector<int> ret;
     int n = 0;
+    cin >> n;
     long long sum = 0;
     for (int i = 0; i < (3 * n); i++)
     {
