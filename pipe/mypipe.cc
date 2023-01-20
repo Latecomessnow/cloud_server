@@ -66,7 +66,8 @@ int main()
     }
 
     pid_t ret = waitpid(id, nullptr, 0);
-    assert(ret < 0);
+    // ret大于0就正常了，大于0通过断言
+    assert(ret > 0);
     (void)ret;
     close(pipefd[1]);
     return 0;
