@@ -1,5 +1,11 @@
-my_fifo:my_fifo.c
+.PHONY:	all
+all:client server
+
+client: client.c
 	gcc -o $@ $^
+server:server.c
+	gcc -o $@ $^
+
 .PHONY:clean
 clean:
-	rm -rf my_fifo
+	rm -rf client server test
