@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<unistd.h>
 #include<sys/types.h>
-#include<sys/stat.h>
 #include<sys/ipc.h>
+#include<sys/shm.h>
 
 #define PATHNAME "/home/guhui/cloud_server/systemV"
 
