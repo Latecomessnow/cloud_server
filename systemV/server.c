@@ -26,7 +26,7 @@ int main()
         printf("client sent:%s\n", mem);
         sleep(1);
    }
-
+   //int fd = open("guhui", O_WRONLY);
    // 去关联
    shmdt(mem);
    // 释放共享内存 
