@@ -7,5 +7,5 @@
 #include<sys/stat.h>
 #include<string.h>
 #include<fcntl.h>
-
+#include<pthread.h>
 #define FILE_NAME "test"

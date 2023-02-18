@@ -9,7 +9,6 @@ int main()
         perror("mkfifo");
         exit(1);
     }
-
     // 进程间通信的本质就是让不同的进程看到同一份资源
     // 不同进程子需要打开同一个命名管道即可
     int fd = open(FILE_NAME, O_RDONLY);
