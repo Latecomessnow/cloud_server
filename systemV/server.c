@@ -31,6 +31,5 @@ int main()
    shmdt(mem);
    // 释放共享内存 
    shmctl(shm, IPC_RMID, NULL);
-
    return 0;
 }
