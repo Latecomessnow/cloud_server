@@ -11,17 +11,6 @@
 template <class T>
 class BlockQueue
 {
-private:
-    bool IsFull()
-    {
-        return _q.size() == _cap;
-    }
-
-    bool IsEmpty()
-    {
-        return _q.empty();
-    }
-
 public:
     BlockQueue(int cap = NUM)
         : _cap(cap)
@@ -52,7 +41,12 @@ public:
         // 出了临界资源要进行解锁
         pthread_mutex_unlock(&_mutex);
         // 此时队列中一定放有了数据，唤醒在空的条件变量下等待的消费者线程
-        pthread_cond_signal(&_empty);
+
+        // 先让生产者生产的数据超过阻塞队列的一半时再唤醒消费者线程
+        if (_q.size() > _cap / 2)
+        {
+            pthread_cond_signal(&_empty);
+        }
     }
 
     // 向阻塞队列中拿取数据(消费者调用)
@@ -71,7 +65,23 @@ public:
         _q.pop();
         pthread_mutex_unlock(&_mutex);
         // 此时队列一定不为满，唤醒在满的条件变量下等待的生产者线程
-        pthread_cond_signal(&_full);
+
+        // 消费者线程消费一半的数据时再唤醒生产者线程
+        if (_q.size() < _cap / 2)
+        {
+            pthread_cond_signal(&_full);
+        }
+    }
+
+private:
+    bool IsFull()
+    {
+        return _q.size() == _cap;
+    }
+
+    bool IsEmpty()
+    {
+        return _q.empty();
     }
 
 private:
