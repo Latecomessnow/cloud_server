@@ -38,10 +38,12 @@ void *GrabTicket(void *arg)
 int main()
 {
     pthread_t t1, t2, t3, t4;
+
     pthread_create(&t1, nullptr, GrabTicket, (void *)"thread-1");
     pthread_create(&t2, nullptr, GrabTicket, (void *)"thread-2");
     pthread_create(&t3, nullptr, GrabTicket, (void *)"thread-3");
     pthread_create(&t4, nullptr, GrabTicket, (void *)"thread-4");
+    
     pthread_join(t1, nullptr);
     pthread_join(t2, nullptr);
     pthread_join(t3, nullptr);
