@@ -49,3 +49,20 @@ int pthread_detach(pthread_t thread);
 
 每一个新线程在共享区都有这样一块区域对其进行描述，因此我们要找到一个用户级线程只需要找到该线程内存块的起始地址，然后就可以获取到该线程的各种信息。
 
+pthread_exit函数的功能就是终止线程，pthread_exit函数的函数原型如下：
+```C++
+void pthread_exit(void *retval);
+```
+retval：线程退出时的退出码信息。
+
+线程是可以被取消的，我们可以使用pthread_cancel函数取消某一个线程，pthread_cancel函数的函数原型如下：
+```C++
+int pthread_cancel(pthread_t thread);
+```
+
+- thread：被取消线程的ID。
+- 线程取消成功返回0，失败返回错误码。
+
+```Shell
+while :; do ps -aL | head -1&&ps -aL | grep mythread | grep -v grep;echo "###############";sleep 1;done
+```
