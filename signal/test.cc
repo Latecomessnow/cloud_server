@@ -60,6 +60,8 @@ int main()
           cout << "ExitCode:" << ((status >> 8) & 0xff) << endl
                << "core dump:" << ((status >> 7) & 1) << endl
                << "ExitSignal:" << (status & 0x7f) << endl;
+            cout << "exit:" << WIFEXITED(status) << endl;
      }
      return 0;
 }
+
