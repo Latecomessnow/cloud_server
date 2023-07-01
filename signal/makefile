@@ -1,4 +1,4 @@
-signal:all
+.PHONY:all
 all:signal test
 signal:
 	g++ -o signal signal.cc -std=c++11

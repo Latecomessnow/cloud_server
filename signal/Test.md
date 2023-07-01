@@ -10,13 +10,16 @@ pid_t waitpid(pid_t pid, int *status, int option)
 '''
 status中的低16位中，次低8位表示退出状态，低7位表示终止信号，第8位表示core dump标志位
 
-​```java
-class HelloWorld {
-    public static void main(String[] args) {
+​``` java
+class HelloWorld 
+{
+    public static void main(String[] args) 
+    {
         System.out.println("Hello, world!");
     }
 }
 ​```
+
 ``` C++
 #include <iostream>
 
