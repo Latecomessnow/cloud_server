@@ -8,7 +8,8 @@ pthread_cond_t cond;
 void *Routine(void *arg)
 {
     std::cout << (char *)arg << "启动" << std::endl;
-    pthread_mutex_lock(&mutex);
+    //pthread_mutex_lock(&mutex);
+    pthread_detach(pthread_self());
     while (true)
     {
         // 线程阻塞在这里, 等待条件变量的成立
@@ -17,8 +18,8 @@ void *Routine(void *arg)
         pthread_cond_wait(&cond, &mutex);
         std::cout << (char *)arg << "被唤醒" << std::endl;
     }
-    pthread_mutex_unlock(&mutex);
-    pthread_exit(nullptr);
+    // pthread_mutex_unlock(&mutex);
+    pthread_exit((void*)0);
 }
 
 int main()
@@ -45,9 +46,9 @@ int main()
         // pthread_cond_broadcast(&cond);
     }
 
-    pthread_join(t1, nullptr);
-    pthread_join(t2, nullptr);
-    pthread_join(t3, nullptr);
+    // pthread_join(t1, nullptr);
+    // pthread_join(t2, nullptr);
+    // pthread_join(t3, nullptr);
 
     pthread_mutex_destroy(&mutex);
     pthread_cond_destroy(&cond);
